@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd" />
+    </bean>
+    
+	<bean id="item1" class="com.cognizant.truyum.model.MenuItem">
+		<property name="id" value="1" />
+		<property name="name" value="Gulab Jamun" />
+		<property name="price" value="500" />
+		<property name="active" value="true" />
+		<property name="dateOfLaunch">
+			<bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="2020-01-31" />
+            </bean>
+		</property>
+		<property name="category" value="Dessert" />
+		<property name="freeDelivery" value="true" />
+	</bean>
+	
+	<bean id="item2" class="com.cognizant.truyum.model.MenuItem">
+		<property name="id" value="2" />
+		<property name="name" value="Sandwich" />
+		<property name="price" value="60" />
+		<property name="active" value="true" />
+		<property name="dateOfLaunch">
+			<bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="2021-01-31" />
+            </bean>
+		</property>
+		<property name="category" value="Breakfast" />
+		<property name="freeDelivery" value="true" />
+	</bean>
+
+	<bean id="menuItems" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="item1"></ref>
+				<ref bean="item2"></ref>
+			</list>
+		</constructor-arg>
+	</bean>
+
+</beans>
